@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/head :: headFragment">
+    <title id="pageTitle">Add recipe - Kuktapp</title>
+    <!-- other elements you want to reference in your layout -->
+</head>
+<body>
+<div th:insert="../static/fragments/nav :: nav"></div>
+<div class="container">
+    <div class="card mt-4 mb-5">
+        <div class="card-body">
+            <h3 class="card-title">Recept hozzáadása</h3>
+            <form action="/recipe/add" method="post" class="needs-validation" novalidate>
+                <div class="form-group">
+                    <label for="title">Recept címe:</label>
+                    <input class="form-control" type="text" name="title" id="title" required>
+                    <div class="invalid-feedback">
+                        Kérlek töltsd ki a recept címe mezőt!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">Kép urlje:</label>
+                    <input class="form-control" type="text" name="imageUrl" id="imageUrl">
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="preparationTime">Elkészítési idő (perc):</label>
+                        <input type="number" min="1" max="600" name="preparationTime" id="preparationTime"
+                               class="form-control">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="difficulty">Nehézség:</label>
+                        <select name="difficulty" id="difficulty" class="form-control" required>
+                            <option value="">- Kérem válasszon -</option>
+                            <option value="EASY">Egyszerű</option>
+                            <option value="MEDIUM">Közepesen egyszerű</option>
+                            <option value="ADVANCED">Bonyolult</option>
+                            <option value="HARD">Nehéz</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ingredients">Hozzávalók:</label>
+                    <textarea name="ingredients" id="ingredients" class="form-control" cols="50"
+                              rows="10" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="preparation">Elkészítés:</label>
+                    <textarea name="preparation" id="preparation" class="form-control" cols="50"
+                              rows="10" required></textarea>
+                </div>
+                <fieldset class="form-group row">
+                    <legend class="col-form-label col-sm-2 float-sm-left"><strong>Allergének:</strong></legend>
+                    <div class="col-sm-10 d-flex align-items-center h-100">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" name="sugarFree" id="sugarFree" class="form-check-input">
+                            <label for="sugarFree" class="form-check-label"> cukormentes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" name="lactoseFree" id="lactoseFree" class="form-check-input">
+                            <label for="lactoseFree" class="form-check-label"> laktózmentes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" name="glutenFree" id="glutenFree" class="form-check-input">
+                            <label for="glutenFree" class="form-check-label"> gluténmentes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" name="dairyFree" id="dairyFree" class="form-check-input">
+                            <label for="dairyFree" class="form-check-label"> tejmentes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" name="eggFree" id="eggFree" class="form-check-input">
+                            <label for="eggFree" class="form-check-label"> tojásmentes</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-primary btn-lg">Recept mentése</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+</body>
+</html>
