@@ -40,6 +40,7 @@ public class Recipe implements Serializable {
         this();
         this.title = title;
         this.imageUrl = imageUrl;
+
         this.preparationTime = preparationTime;
         this.difficulty = difficulty;
         // this.ingredients = ingredients;
