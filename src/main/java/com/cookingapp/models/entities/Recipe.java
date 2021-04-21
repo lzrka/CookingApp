@@ -15,10 +15,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
+
 @ToString
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 public class Recipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,11 +42,12 @@ public class Recipe implements Serializable {
         this();
         this.title = title;
         this.imageUrl = imageUrl;
-
         this.preparationTime = preparationTime;
         this.difficulty = difficulty;
         // this.ingredients = ingredients;
         this.preparation = preparation;
         //this.allergens = allergens;
     }
+
+
 }
